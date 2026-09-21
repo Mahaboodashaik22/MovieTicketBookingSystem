@@ -1,23 +1,18 @@
 package model;
 
-public class User {
+public class User extends Person {
 
-    private int userId;
-    private String name;
-    private String email;
     private String password;
 
     public User(int userId, String name,
                 String email, String password) {
 
-        this.userId = userId;
-        this.name = name;
-        this.email = email;
+        super(userId, name, email);
         this.password = password;
     }
 
     public int getUserId() {
-        return userId;
+        return id;
     }
 
     public String getName() {
@@ -45,7 +40,12 @@ public class User {
     }
 
     @Override
+    public String getRole() {
+        return "Customer";
+    }
+
+    @Override
     public String toString() {
-        return userId + " - " + name + " - " + email;
+        return id + " - " + name + " - " + email;
     }
 }

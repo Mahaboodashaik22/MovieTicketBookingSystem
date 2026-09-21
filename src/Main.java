@@ -44,5 +44,8 @@ public class Main {
         System.out.println("Show: " + show);
         System.out.println("Seat: " + seat);
         System.out.println(booking);
+        Person person = user;
+
+        System.out.println("Role: " + person.getRole());
     }
 }

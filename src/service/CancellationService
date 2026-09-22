@@ -1,0 +1,25 @@
+package service;
+
+import model.Booking;
+import model.Seat;
+
+public class CancellationService {
+
+    public boolean cancelBooking(Booking booking, Seat seat) {
+
+        if (booking == null) {
+            System.out.println("Booking not found.");
+            return false;
+        }
+
+        if (!seat.isBooked()) {
+            System.out.println("Seat is already available.");
+            return false;
+        }
+
+        seat.setBooked(false);
+
+        System.out.println("Booking cancelled successfully.");
+        return true;
+    }
+}

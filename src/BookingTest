@@ -1,0 +1,105 @@
+import model.Booking;
+import model.Seat;
+import model.Show;
+import model.User;
+
+import service.BookingService;
+import service.BillingService;
+import service.CancellationService;
+
+public class BookingTest {
+
+    public static void main(String[] args) {
+
+        // Create User
+        User user = new User(
+                1,
+                "Rahul",
+                "rahul@gmail.com",
+                "12345"
+        );
+
+        // Create Show
+        Show show = new Show(
+                501,
+                101,
+                "25-09-2026",
+                "6:00 PM",
+                "Screen 1",
+                200
+        );
+
+        // Create Seat
+        Seat seat = new Seat("A1");
+
+        // Create services
+        BookingService bookingService = new BookingService();
+        BillingService billingService = new BillingService();
+        CancellationService cancellationService =
+                new CancellationService();
+
+        // =========================
+        // TEST 1: BOOKING
+        // =========================
+
+        System.out.println("===== TEST 1: BOOKING =====");
+
+        Booking booking = bookingService.createBooking(
+                1001,
+                user,
+                show,
+                seat
+        );
+
+        // =========================
+        // TEST 2: BILLING
+        // =========================
+
+        System.out.println("\n===== TEST 2: BILLING =====");
+
+        billingService.printBill(booking);
+
+        // =========================
+        // TEST 3: DOUBLE BOOKING
+        // =========================
+
+        System.out.println("\n===== TEST 3: DOUBLE BOOKING =====");
+
+        Booking secondBooking = bookingService.createBooking(
+                1002,
+                user,
+                show,
+                seat
+        );
+
+        if (secondBooking == null) {
+            System.out.println(
+                    "Double booking prevented successfully."
+            );
+        }
+
+        // =========================
+        // TEST 4: CANCELLATION
+        // =========================
+
+        System.out.println("\n===== TEST 4: CANCELLATION =====");
+
+        cancellationService.cancelBooking(
+                booking,
+                seat
+        );
+
+        // =========================
+        // TEST 5: SEAT STATUS
+        // =========================
+
+        System.out.println("\n===== TEST 5: SEAT STATUS =====");
+
+        System.out.println(
+                "Seat " + seat.getSeatNumber()
+                        + " booked: " + seat.isBooked()
+        );
+
+        System.out.println("\n===== ALL TESTS COMPLETED =====");
+    }
+}

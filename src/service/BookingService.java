@@ -1,5 +1,5 @@
 package service;
-
+import dao.BookingDAO;
 import model.Booking;
 import model.Seat;
 import model.Show;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookingService {
-
+    private BookingDAO bookingDAO = new BookingDAO();
     private List<Booking> bookings;
 
     public BookingService() {
@@ -39,7 +39,7 @@ public class BookingService {
         seat.setBooked(true);
 
         bookings.add(booking);
-
+        bookingDAO.saveBooking(booking);
         System.out.println("Ticket booked successfully!");
         System.out.println("Booking ID: " + bookingId);
         System.out.println("Seat: " + seat.getSeatNumber());

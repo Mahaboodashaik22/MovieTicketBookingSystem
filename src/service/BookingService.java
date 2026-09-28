@@ -16,7 +16,11 @@ public class BookingService {
         bookings = new ArrayList<>();
     }
 
-    public Booking bookTicket(User user, Show show, Seat seat) {
+    public Booking createBooking(
+          int bookingId,
+          User user,
+          Show show,
+          Seat seat) {
 
         if (seat.isBooked()) {
             System.out.println("Sorry, seat "
@@ -26,7 +30,6 @@ public class BookingService {
             return null;
         }
 
-        int bookingId = bookings.size() + 1001;
 
         Booking booking = new Booking(
                 bookingId,

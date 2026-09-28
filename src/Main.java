@@ -36,7 +36,8 @@ public class Main {
                 new BookingService();
 
         Booking booking =
-                bookingService.bookTicket(
+                bookingService.createBooking(
+                        1001,
                         user,
                         show,
                         seat
